@@ -84,6 +84,7 @@ This package is used:
 * copyTree.C++ should be modified to generate the input root files for HF
 * run root, .L copyTree.C++, doAll(lumi)
 
+
 ### Using alternate input ntuples
 * copyTree.C has some level of branch-name-mapping, so in principle it should be possible to adapt the code to read ntuples with different branch names and output the format expected by HistFitter. Look for example at the guessBranchMapping function and at how it is being used. The tricky part will be to adapt the types of the local variables to the ones used in the alternate ntuple.
 * If you implement the mapping for different ntuples, just let me have the code and I'll commit it.
