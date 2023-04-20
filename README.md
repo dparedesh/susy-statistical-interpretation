@@ -28,8 +28,8 @@
 # Introduction <a name="introduction"></a>
 This package is used:
 
-1. Generate the input root files for HistFitter (Maintained by Otilia)
-2. Generate the HistFitter commands to do all kinds of fit, to get yields or plots (Maintained by Daniela)
+1. Generate the input root files for HistFitter
+2. Generate the HistFitter commands to do all kinds of fit, to get yields or plots 
 
 
 # Get project from Git <a name="git"></a>:
@@ -76,7 +76,7 @@ This package is used:
     
 
 
-## Preparing the HF input files: (`maintained by Otilia`) <a name="prepareInput"></a>
+## Preparing the HF input files: <a name="prepareInput"></a>
 
 ### General instruction on HF input files
 * The input files must be divided in bg, signal, data
