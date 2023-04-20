@@ -1,0 +1,1 @@
+python ../python/generateCommands.py --plot --drawCLs --extraHarvestToContours " --xMin 200 --xMax 900 --yMin 0 --yMax 100" --doBlind ALL --fitmodel excl --SR Rpc3LH100BR,Rpc4LHS100BR --Model Mc16SusyC1N2N1_GGMHinoZh --SigNameSchema SP:4,LSP:5 --WithSigMass
