@@ -101,7 +101,7 @@ N.B. NEW TARGET LUMI OPTION
 * The MC sample for the different mc16 campaign can be placed in the same directory, since the code is able to recognize the campaign from the r-tag in the name;
 * Set the total target Lumi (in pb-1) in the main HF script (generateCommands.py). This will be propagated to the HF configuration through command-lines argument. The lumi tag is also used for defining the output file names, for the legends of the plots, and to decide which input files to read, so you'd better set it right.
 
-# How to use the tool? <a name="useTool"></a> (Maintained by Daniela)
+# How to use the tool? <a name="useTool"></a> 
 
 
 ## About the scripts to be used... <a name="mainScripts"></a>
