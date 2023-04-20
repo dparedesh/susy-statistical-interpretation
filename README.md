@@ -278,7 +278,7 @@ that you want to use.
 
 11. Change the variable `runNameTag` to what you prefer. That will define the name of your output files.
 
-## Generating the HistFitter commands: (maintained by Daniela)` <a name="generateCommands"></a>
+## Generating the HistFitter commands: ` <a name="generateCommands"></a>
 
 Running instructions:
 
