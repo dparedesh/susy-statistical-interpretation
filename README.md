@@ -18,8 +18,8 @@
 11. [How to add a sample-specific weight for a determined sample?](#scaleBkg) 
 12. [How to add a normalization factor for a determined sample?](#NFBkg) 
 13. [How to run jobs in lxplus batch?](#batch)
-   * [How to check that everything went well in batch?](#batchCheck)
-   * [How to submit failed jobs?](#batchResubmit)
+     * [How to check that everything went well in batch?](#batchCheck)
+     * [How to submit failed jobs?](#batchResubmit)
 14. [How to get yields and systematic tables?](#tables)
 15. [How to get pull plots? ](#pull)
 16. [How to get the summary plots and tables?](#summary)
@@ -56,7 +56,7 @@ cd ss3l_hf
 
 ### 1) Setup the tool for the first time <a name="setup1"></a> : 
 
-1. From the main directory, `ss3l_hf`, setup the whole the package:
+From the main directory, `ss3l_hf`, setup the whole the package:
   
 ```         
 source setup.sh
@@ -108,16 +108,16 @@ doAll(lumi)
 
 ### Set target Lumi
 
-* Set the target `Lumi` (in $pb^{-1}$) in `doAll(lumi mc16a, lumi mc16d, lumi mc16e)` with the corresponding lumi for each mc16 campaign in `copyTree.C`;
-* The total lumi will be calculated directly and set as name of the output file, while 3 different `rescaleLumi` values will be calculated for each MC sample;
-* The MC sample for the different mc16 campaigns can be placed in the same directory since the code can recognize the campaign from the r-tag in the name;
+* Set the target `Lumi` (in $pb^{-1}$) in `doAll(lumi mc16a, lumi mc16d, lumi mc16e)` with the corresponding lumi for each mc16 campaign in `copyTree.C`.
+* The total lumi will be calculated directly and set as the name of the output file, while 3 different `rescaleLumi` values will be calculated for each MC sample.
+* The MC sample for the different mc16 campaigns can be placed in the same directory since the code can recognize the campaign from the r-tag in the name.
 * Set the total target Lumi (in pb-1) in the main HF script (`generateCommands.py`). This will be propagated to the HF configuration through a command-line argument. The lumi tag is also used for defining the output file names, for the legends of the plots, and to decide which input files to read, so you'd better set it right.
 
 # How to use the tool? <a name="useTool"></a> 
 
 
 ## About the scripts to be used... <a name="mainScripts"></a>
-1. Most important python scripts are `python/generateCommands.py`, `python/fitConfigSS3L.py`, `macrosSS/plotContours.py`, and `python/plottingConfig.py`
+1. The most important python scripts are `python/generateCommands.py`, `python/fitConfigSS3L.py`, `macrosSS/plotContours.py`, and `python/plottingConfig.py`
 
     1. `generateCommands.py`: Main control script. It passes the needed parameters to `fitConfigSS3L.py` and  `plotContours.py`. In addition, it runs other scripts 
     generating the intermediate steps to produce the final exclusion plots.
@@ -134,7 +134,7 @@ doAll(lumi)
         
         * Forbidden cuts and labels: input parameters of `setForbiddenCutsAndLabels(forbiddenCut,forbiddenLabelX,forbiddenLabelY,labelTex,forbiddenFunction)`.
         
-        * Position of the line and position of the label over this line to be shown: the input parameters of the function `setValLine(valX,valY,useForbiddenRegion)` help to determine these positions. Usually, the upper value for the y-range is provided, but this is not always the case. You must play with that to draw the line. The option `useForbiddedRegion` is a bool parameter that will say to the tool if it must use the  forbidden region to determine those positions. The way that it works can be seen in the function`update()` of the class Model. 
+        * Position of the line and position of the label over this line to be shown: the input parameters of the function `setValLine(valX,valY,useForbiddenRegion)` help to determine these positions. Usually, the upper value for the y-range is provided, but this is not always the case. You must play with that to draw the line. The option `useForbiddedRegion` is a bool parameter that will say to the tool if it must use the  forbidden region to determine those positions. The way that it works can be seen in the function 'update ()` of the class Model. 
         
         * Previous limits: input parameters of `setPreviousLimits(tag,legend,hep_data.csv,line,f)`. You can add as many previous limits as you want. They are
         saved in an internal dictionary with the key `tag`. If this `tag` is called in the script `plotContours.py`, then the previous limit associated with this `tag` will be shown. As in any dictionary, different 
@@ -145,15 +145,13 @@ doAll(lumi)
     
 
         
-2. Other useful and needed scripts are stored in the directory named `python`
+2. Other useful and needed scripts are stored in the directory named `python`:
    
     * `pathUtilities.py:` File used to store all useful PATH. It must be carefully modified to fit your needs,  ***before doing anything***. 
     * `massCheck.py:` Script used to check if there are signal samples with the same mass parameters.
     * `FillJsonFilesWithMissingInfo.py:`  Script used to fill the missing information into JSON files, needed to produce the exclusion plots.
     * `jsonToBands.py:`   Script used to read the mass points `m0` and all `excludedXsec*` from the JSON file and create expected, observed, and 1 and 2-sigma bands in TGraphs. Also, it will save the plots for `theory x-section`, including the systematic variations. This script is **not** used to create 2D exclusion contours, but only when the goal is to plot the upper limit on x-sections as a function of the generated mass point `m0`.
     * `CollectSignalYields.py (TO BE UPDATED):` is used to get yields, fitting results, nuisance parameters information e.g: ranking, pulling plots.
-
-
 
 4. `susyGridFiles`: Directory used to store the  SUSY signal samples used in the analysis. The model's name provided to `generateCommands.py` must match the name of a file in this directory. 
 5. `InputTrees`: Directory used to place the HF inputs ROOT files.
@@ -283,7 +281,7 @@ that you want to use.
   you change those names you must ensure that the input provided when creating the samples matches those names.* 
 
 
-10. For exclusion limits, ensure that the SUSY grid that you want to use is stored in `susyGridFiles` directory. If it is not, you must add it. 
+10. For exclusion limits, ensure that the SUSY grid that you want to use is stored in the `susyGridFiles` directory. If it is not, you must add it. 
 
 11. Change the variable `runNameTag` to what you prefer. That will define the name of your output files.
 
@@ -293,14 +291,14 @@ Running instructions:
 
     python generateCommands.py --FUNCTION --doBlind <option> --fitmodel FITMODEL --Model MODEL --SR REGION --Sys SYSLIST
     
-- ```--FUNCTION```: choose from `fit`, `merge`, `plot`, `yields`, `SysBreak`, `FitResults` according to what you want
+- ```--FUNCTION```: choose from `fit`, `merge`, `plot`, `yields`, `SysBreak`, `FitResults` according to what you want.
 - ```--doBlind ```: choose from `ALL`, `SR`, `VR`, `CR`. It will blind the options provided. If more than one, they must be comma separated.
-- ```--fitmodel```: choose from `excl`, `disc`, `bkg` according to what fit you want to perform
+- ```--fitmodel```: choose from `excl`, `disc`, `bkg` according to what fit you want to perform.
 - ```--Model```: set your fitting signal model. It must exist in the `choices` argument of the parser.
 - ```--SR```: set your interested signal region. If more than one SR they must be comma separated. They can be binned.
 - ```--CR```: set your interested control region.  If more than one CR they must be comma separated. They can be binned.
 - ```--VR```: set your interested validation regions. You can add as many VRs as you want, as long as they are comma-separated. They are unbinned.
-- ```--Sys```: set the systematics that you want to included. `None` for nothing, `ALL` to include all systematics. For signal region optimization studies and preliminary results (when systematic ntuples are not available), you can use a flat systematic on the total background. You can use the string  `FLAT<number>`, where ```<number>``` is the value that you want to apply, for example  ```--Sys FLAT30``` will apply 30% of systematic to the total background
+- ```--Sys```: set the systematics that you want to included. `None` for nothing, `ALL` to include all systematics. For signal region optimization studies and preliminary results (when systematic ntuples are not available), you can use a flat systematic on the total background. You can use the string  `FLAT<number>`, where ```<number>``` is the value that you want to apply, for example  ```--Sys FLAT30``` will apply 30% of systematic to the total background.
 - ```--batch```: use batch to run the fit. Currently, only *IHEP HTCondor*  and *HTcondor* in *lxplus batch* systems are supported.
   
     The following options work only on lxplus:
@@ -310,7 +308,7 @@ Running instructions:
        
 - ```--doUL```: it will compute the upper limits on the cross-section for ```--fit --fitmodel excl```. It will merge  the UL results for ```--merge```, and it will draw the UL for ```--plot```. 
 
-     * ```--draw1D```: Use this option together with --doUL if you want to produce 1D plots, i.e. upper limits on the cross-section as a function of the mass point. 
+     * ```--draw1D```: Use this option together with `--doUL` if you want to produce 1D plots, i.e. upper limits on the cross-section as a function of the mass point. 
 
 - The options below make sense only for ```--plot``` option in the exclusion plots:
 
@@ -346,17 +344,16 @@ then internally it will be converted to a CR.
 
 # How to get exclusion limits? <a name="exclusion"></a>
 
-Assume you are in `python` dir...
-
 Exclusion limits in this tool are obtained through three different steps: ```--fit```, ```--merge```, and ```--plot``` (in that order!). They are explained below.
 
+Assume you are in the `python` directory.
 
 ## 1) Perform the fit:
 
             python generateCommands.py --fit --doBlind ALL --fitmodel excl --Model Mc16SusyGG2StepWZ --SR Rpc2L0b --Sys None
 
   
-  This command will perform an `exclusion fit`, blinding `ALL` regions for the `GG2StepWZ` model at `Rpc2L0b` signal region `without systematics` included. One can change the options as they want. All results will be stored in `HistFitter/results/` (the main script used are `generateCommands.py`).
+  This command will perform an `exclusion fit`, blinding `ALL` regions for the `GG2StepWZ` model at `Rpc2L0b` signal region `without systematics` included. One can change the options as they want. All results will be stored in `HistFitter/results/` (the main script used is `generateCommands.py`).
 
 
 
@@ -364,7 +361,7 @@ Exclusion limits in this tool are obtained through three different steps: ```--f
  
             python generateCommands.py --merge --doBlind ALL  --Model Mc16SusyGG2StepWZ --SR Rpc2L0b --Sys None
 
-  This line will create the proper  command to merge all related results for the exclusion fits with `ALL` regions blinded  for the`GG2StepWZ` model at `Rpc2L0b` signal region `without systematics` included. It will merge the results  into one file per theory variation, i.e. nom, up and down, which are needed for plotting part. 
+  This line will create the proper  command to merge all related results for the exclusion fits with `ALL` regions blinded  for the `GG2StepWZ` model at `Rpc2L0b` signal region `without systematics` included. It will merge the results  into one file per theory variation, i.e. nom, up, and down, which are needed for the plotting part. 
   Results will be stored in `HistFitter/results/` (the main script used is `generateCommands.py`)
 
 
@@ -374,12 +371,12 @@ Exclusion limits in this tool are obtained through three different steps: ```--f
        python generateCommands.py --plot --doBlind ALL  --Model Mc16SusyGG2StepWZ --SR Rpc2L0b --Sys None
 
 
-  This command will generate proper command lines to `plot 2-D exclusion limits` for the exclusion fits with `ALL` regions blinded for the`GG2StepWZ` model at `Rpc2L0b` signal region `without systematics` included. All results and plots will be stored in `HistFitterUser` dir. The main scripts used are `generateCommands.py` and `plotContours.py`. 
+  This command will generate proper command lines to plot *2D exclusion limits* for the exclusion fits with `ALL` regions blinded for the 'GG2StepWZ` model at `Rpc2L0b` signal region `without systematics` included. All results and plots will be stored in `HistFitterUser` dir. The main scripts used are `generateCommands.py` and `plotContours.py`. 
 
 
-  :warning: **WARNING:**
-  * **In order to run this option, you must be sure that your model and its plotting parameters are defined in the script ```plottingConfig.py```. If it is
-  not, you must add it.**
+  > [!IMPORTANT]
+  > *In order to run this option, you must be sure that your model and its plotting parameters are defined in the script ```plottingConfig.py```. If it is
+  not, you must add it.*
   
 ## 4) Generate exclusion 1D plot :
 
@@ -387,38 +384,38 @@ Exclusion limits in this tool are obtained through three different steps: ```--f
       python generateCommands.py --plot --Model Mc16SusyTT2Step --SR Rpc3LSS1b --Sys ALL --doUL --draw1D
 
 
- This command will generate proper command lines to plot upper limits on the cross-sections as a function of the generated mass points for 
- the Mc16SusyTT2Step model at `Rpc3LSS1b` signal region `with ALL systematics` included. All results and plots will be stored in `HistFitterUser` dir. The main scripts used are `generateCommands.py` and `plotContours.py`. 
+ This command will generate the proper command lines to plot upper limits on the cross-sections as a function of the generated mass points for 
+ the `Mc16SusyTT2Step` model at `Rpc3LSS1b` signal region with `ALL` systematics included. All results and plots will be stored in the `HistFitterUser` directory. The main scripts used are `generateCommands.py` and `plotContours.py`. 
 
     
-:warning: **WARNING:**
-**You must ensure that you have done the exclusion fit and merging with `--doUL`. When plotting, both options, `--doUL --draw1D` must be provided to get the final plot of upper limit on the cross-section as a function of the generated mass point.**
+  > [!IMPORTANT]
+  > *You must ensure that you have done the exclusion fit and merging step with `--doUL`. When plotting, both options, `--doUL --draw1D` must be provided to get the final plot of the upper limit on the cross-section as a function of the generated mass point.*
 
 
 
 # How to get the exclusion plots for the `best limits`? <a name="bestLimits"></a> 
 
-Assume you are in `python` dir...
+Assume you are in the `python` directory.
 
-If you want to get the `best limit` for a model with multiple signal regions, the key word in the command line is `--makeBest <SR1>,<SR2>,<SR>,..`:
+If you want to get the `best limit` for a model with multiple signal regions, the keyword in the command line is `--makeBest <SR1>,<SR2>,<SR>,..`:
 
         python generateCommands.py --plot  --doBlind ALL --Model Mc16SusyBtt --SR Rpc2L1b --Sys None  --makeBest Rpc2L1b,Rpc2L2b
 
 
 This command will generate the proper commands to get the best contour plot for the exclusion fit with `ALL` 
-regions blinded  for the`Mc16SusyBtt` model `without systematics` included for the list of signal regions provided: Rpc2L1b and Rpc2L2b. In addition to the best contour plot,
+regions blinded  for the 'Mc16SusyBtt` model without systematics* included for the list of signal regions provided: Rpc2L1b and Rpc2L2b. In addition to the best contour plot,
 it will also produce the plot of the best signal region used per each signal point in the grid. 
 
 All results and plots will be stored in `HistFitterUser` dir.
 
-  :warning:  **WARNING:**
-  * **In order to run this comand you must have already produced all the contour plots for every signal region involved.** 
+> [!IMPORTANT]
+>  *In order to run this command you must have already produced all the contour plots for every signal region involved.*
  
 
 
 # How to get a background-only fit?  <a name="bkg"></a>
 
-  Assuming you are in `python` dir
+  From the  `python` directory:
 
        python generateCommands.py --fit --fitmodel bkg  --SR Rpc2L0b --Sys ALL
 
@@ -427,7 +424,7 @@ All results and plots will be stored in `HistFitterUser` dir.
 
 # How to get a discovery fit? <a name="discovery"></a>
   
-   Assuming you are in `python` dir
+   From the `python` directory:
 
         python generateCommands.py --fit --fitmodel disc --SR Rpc2L0b --Sys ALL
 
@@ -435,7 +432,7 @@ All results and plots will be stored in `HistFitterUser` dir.
  That command will generate a discovery fit in the SR Rpc2L0b with ALL systematics included. All results will be stored in `HistFitter/results/.`
 
 
- To get the model independent upper limits follow the instructions from HF to use the script `UpperLimitTable.py`
+ To get the model-independent upper limits follow the instructions from HF to use the script `UpperLimitTable.py`
 
 
 
@@ -446,15 +443,13 @@ Binned fits are done by providing the proper extra options to the configuration 
 
 ```
 --extraFitConfig '--binnedFitSR Rpc2L1b:meff,Rpc2L2b:met --binnedFitCR CRWZ5j:nJets' 
-
 ```
 
-which means that it will do a binned and simultanous fit in the SRs Rpc2L1b and Rpc2L2b in the variables meff and met, respectively, and in nJets in the CRWZ5j.  
-
+which means that it will do a binned and simultaneous fit in the SRs Rpc2L1b and Rpc2L2b in the variables meff and met, respectively, and in nJets in the CRWZ5j.  
 
 You can have a look at the file `fitConfigSS3L.py` for other options.
 
-# How to normalise a background in a CR ? <a name="normBkg"></a>
+# How to normalize a background in a CR? <a name="normBkg"></a>
 
 Again, you must provide the proper options to the file `fitConfigSS3L.py`. This is done by adding the option `--extraFitConfig` to the script `generateCommands.py` with the proper option, in this case ```bkgToNormalize```. For example:
 
@@ -467,7 +462,7 @@ Again, you must provide the proper options to the file `fitConfigSS3L.py`. This 
 which means that it will use the CRWZ5j to normalize the WZ background.  
 
 
-# How to add a sample specific weight for a determined sample? <a name="scaleBkg"></a>
+# How to add a sample-specific weight for a determined sample? <a name="scaleBkg"></a>
 
 Here the option to be passed to the ```--extraFitConfig``` of the ```generateCommands.py``` is ```--extraSampleWeight```. For example 
 
@@ -482,14 +477,13 @@ which means that it will apply the weight ```<weightName1>``` only to the ```<bk
 
 ```
 
-which means that the branch of the ntuples ```weightSpecial``` will be used as addidtional weight for the WZ sample. 
+which means that the branch of the ntuples ```weightSpecial``` will be used as an additional weight for the WZ sample. 
 
 
-:warning:  **WARNING:**
+  > [!WARNING]
+  > *No systematic variations are allowed for this weight. HF internally multiplies the nominal weight for this weight for the nominal and systematic variations, i.e. in order to include systematic variations for this particular weight, we will need to hack HF internally to remove that weight from the systematics when including its own systematics... If you need systematic variations for this additional weight, the easiest workaround is to add this weight as nominal for all samples, and for those samples where the weight is not needed, set the values to 1.* 
 
-**No systematic variations are allowed for this weight. HF internally multiplies the nominal weight for this weight for the nominal and systematic variations, i.e. in order to include systematic variations for this particular weight, we will need to hack HF internally to remove that weight from the systematics when including its own systematics... If you need systematic variations for this additional weight, the easist work around is to add this weight as nominal for all samples, and for those samples where the weight is not needed, set the values to 1.** 
-
-# How to add a normalisation factor for a determined sample? <a name="NFBkg"></a>
+# How to add a normalization factor for a determined sample? <a name="NFBkg"></a>
 
 Here the option to be passed to the ```--extraFitConfig``` of the ```generateCommands.py``` is ```--NF```. For example 
 
@@ -504,7 +498,7 @@ which means that it will apply the NF (defined in the file ```hardCodedYields.js
 
 ```
 
-which means that NF for the bkgs WZ and ttW will be used. As said before, this normalisation factors and their uncertainties must be defined in the file ```hardCodedYields.json```, where every bkg is a key in the dictionary ```NF```. For example:
+which means that NF for the bkgs WZ and ttW will be used. As said before, these normalization factors and their uncertainties must be defined in the file ```hardCodedYields.json```, where every bkg is a key in the dictionary ```NF```. For example:
 
 ```python
     "NF": {
@@ -517,14 +511,14 @@ which means that NF for the bkgs WZ and ttW will be used. As said before, this n
    
 where every list is defined like:  ```[nom, up, down]``` , where ```nom``` is the nominal value of the SF and ```up``` and ```down``` are the **relative systematic variations** of the SF.
 
-This is a usual work, when bkgs are normalised in a CR and their normalisation factors are extrapolated to SRs but the fits in the CR and SR are not simultanous. 
+This is a usual work when bkgs are normalized in a CR and their normalization factors are extrapolated to SRs but the fits in the CR and SR are not simultaneous. 
 
 
 # How to run jobs in lxplus batch?<a name="batch"></a>
 
-Assume you are in `python` dir...
+Assume you are in the `python` directory.
 
-Jobs in batch are only supported for the `--fit` option. Currently only `HTcondor` in `lxplus` and `IHEP cluster` are supported. 
+Jobs in batch are only supported for the `--fit` option. Currently, only `HTcondor` in `lxplus` and `IHEP cluster` are supported. 
 
 In order to submit the jobs to batch you just need to add the options `--batch  --extra <syst:bsub,queue:8nh,storage:20000>` to the main command line. At least `syst` and `queue` must be provided, `storage` is optional.
 
@@ -534,7 +528,7 @@ Example:
   python generateCommands.py --fit --doBlind ALL --fitmodel excl --Model Mc16SusyGG2StepWZ --SR Rpc2L0b --Sys None --batch --extra syst:condor,queue:tomorrow
   ```
   
-  This command will perform an `exclusion fit`, blinding `ALL` regions for the `GG2StepWZ` model at `Rpc2L0b` signal region `without systematics` included. A
+  This command will perform an `exclusion fit`, blinding `ALL` regions for the `GG2StepWZ` model at `Rpc2L0b` signal region *without systematics* included. A
   job per signal point will be submitted for exclusion fit. If `--doUL`, then one job for the exclusion and one job for the upper limit will be submitted per signal
   point.
   
@@ -542,18 +536,19 @@ Example:
   
 ### How to check that everything went well in batch?<a name="batchCheck"></a>
 
-**This works only for those jobs that were run in `lxplus`**
+> [!IMPORTANT]
+> **This works only for those jobs that were run in `lxplus`**
 
 Jobs in batch, and even locally, can fail for several reasons. The main one is the connection lost when reading the ntuples. In this case, HistFitter does not stop when executing
-the fit, and it just skips the TTree that was not able to read. That is actually a common problem when reading the systematics, but it can happen as well for nominal trees. As a result,
+the fit, and it just skips the TTree that was not able to read. That is actually a common problem when reading the systematics, but it happens as well for nominal trees. As a result,
 you can have a fit, whose result is a bit weird, or it does not match the values obtained by other people. 
 
 The macro `CheckJobs.C` can be used to check that everything went well in batch. It is designed to spot several of the reasons (which have
-been identified along time) for which the fit can't go well. 
+been identified a long time) for which the fit can't go well. 
 
 When jobs are submitted to lxplus batch, a .txt file named `Jobs_<grid><runNameTag>_<fitmodel>.txt` is generated. This file is the input for the macro CheckJobs.C
 
-How to use the macro? check that the `lumiTag` variable at the beginning of the script matchs the one that you used. Then:
+How to use the macro? check that the `lumiTag` variable at the beginning of the script matches the one that you used. Then:
 
 ```
 root -l 
@@ -567,39 +562,36 @@ After execution, it will print a summary containing the reason for which the job
 
 ### How to resubmit failed jobs? <a name="batchResubmit"></a>
 
-**This works only for those jobs that were run in `lxplus`**
+> [!IMPORTANT]
+> **This works only for those jobs that were run in `lxplus`**
 
-The file created previosly can be used to resubmit  to batch the failed jobs using option `--resubmit ToSubmit.txt` in the main command line. Example:
+The file created previously can be used to resubmit  to batch the failed jobs using the option `--resubmit ToSubmit.txt` in the main command line. Example:
 
 
 ```
   python generateCommands.py --fit --doBlind ALL --fitmodel excl --Model Mc16SusyGG2StepWZ --SR Rpc2L0b --Sys None --batch --extra syst:condor,queue:tomorrow --resubmit ToSumit.txt
   ```
   
-  which will submit only those jobs whose match the name in the file ToSubmit.txt
+  which will submit only those jobs that match the name in the file ToSubmit.txt
 
 
+# How to get the yields and systematical tables?  <a name="tables"></a> 
 
+> [!CAUTION]
+> **The README file has not been updated for this section`**... *However, you can test if the commands below work. The README will be updated soon. The current recommendation is to use the instructions from HistFitter to generate the tables.*
 
-# How to get the yields and systematical tables? *->TO BE UPDATED* <a name="tables"></a> 
-
- 
- 
-:exclamation: The README file have not been udpated for this section... However you can test if they work. They will be updated soon. The current recommedation is to use the instructions from HistFitter to generate the tables.-
-
-Assuming you are in `python` dir
-
+From the `python` directory:
 
     python generateCommands.py --yields  --fitmodel bkg --Model Mc16SusyGG_Rpv331 --SR Rpv2L --Sys ALL
 
     python generateCommands.py --SysBreak  --fitmodel bkg --Model Mc16SusyGG_Rpv331 --SR Rpv2L --Sys ALL
 
-Above two lines will get `yields` table and `systematical breakdown` for `bkg-only fit` aiming at `GG_Rpv331` for `Rpv2L` region with all systematics included. All results will be stored in `${HistFitterUser/Table/}` dir or `${HistFitterUser/Sys_BreakDown}` dir.
+The above two lines will get `yields` table and `systematical breakdown` for `bkg-only fit` aiming at `GG_Rpv331` for `Rpv2L` region with all systematics included. All results will be stored in `HistFitterUser/Table/` directory or `HistFitterUser/Sys_BreakDown` directory.
  
  
 # How to get pull plots? <a name="pull"></a>
 
-Assume that you are in `ss3l_hf`
+Assume that you are in the `ss3l_hf` directory.
 
 Use directly the script provided by HistFitter:
 
@@ -609,30 +601,30 @@ Use directly the script provided by HistFitter:
    ```
 
 
-where `<log_file>` must be created by you by dumping all the output printed in the screen  when running the fit. 
+where `<log_file>` must be created by you by dumping all the output printed on the screen  when running the fit. 
 
 
 
 # How to get the summary plots and tables? <a name="summary"></a>
 
 The macro `plotSR.py` is used to get the summary plots and tables shown in the paper, while the macro `PlotSystematicsGrouped.py` is used 
-to get the grouped systematics plot. Both scripts have their own README section at the beggining of the file explaining how to use 
-them. Those scripts can be found at the `PlottingMacros` directory. The script `SummaryPlot.sh` summarize the commands used to get the summary plots and tables for the fast paper, in order to run it just do:
+to get the grouped systematics plot. Both scripts have their own README section at the beginning of the file explaining how to use 
+them. Those scripts can be found in the `PlottingMacros` directory. The script `SummaryPlot.sh` summarizes the commands used to get the summary plots and tables for the fast paper, in order to run it just do:
 
-Asumming that you are in `ss3l_hf`:
+Assuming that you are in the `ss3l_hf` directory:
 
 
      cd PlottingMacros
      ./SummaryPlots.sh 
      
+> [!IMPORTANT] 
+> *In order to run these macros, you will first need to create all the yields and systematic tables using the proper HistFitter commands for all the regions that you want to include in the plots.*  
  
-**In order to run these macros, you will first need to create all the yields and systematic tables using the proper HistFitter commands for all the regions that you want to include in the plots.**  
  
+The script `plotSR.py` is designed to read  the workspace created by HistFitter for the `bkg-only` fits. By default, it will use the pre-fit symmetric uncertainties. For asymmetric  uncertainties, the proper option must be provided.
+For fitted yields, only symmetric uncertainties are available. Options for blinding results and showing significance plots at the bottom are available as well. 
  
-The script `plotSR.py` is designed to read  the workspace created by HistFitter for the `bkg-only` fits. By default it will use the prefit symmetric uncertainties. For assymmetric  uncertainties the proper option must be provided.
-For fitted yields, only symmetric uncertainties are available. Options for blinding results and show significance plots at the bottom are available as well. 
- 
-At the moment of running `plotSR.py`, the file `AsymmetricUnc.json`  is created. This file will be read by the script `PlotSystematicsGrouped.py` to get the statistical uncertainty. Be sure that the file  `AsymmetricUnc.json` contain all the regions that you want to include in the grouped systematics plot. 
+At the moment of running `plotSR.py`, the file `AsymmetricUnc.json`  is created. This file will be read by the script `PlotSystematicsGrouped.py` to get the statistical uncertainty. Be sure that the file  `AsymmetricUnc.json` contains all the regions that you want to include in the grouped systematics plot. 
 
 
 
@@ -641,7 +633,7 @@ At the moment of running `plotSR.py`, the file `AsymmetricUnc.json`  is created.
 
 ### Bkg-only fits:  
 
-Yields and systematic tables were obtained with this kind of fit. Also summary plots and tables. The command used to get the results for the signal region Rpc2L0b is shown below.
+Yields and systematic tables were obtained with this kind of fit. Summary plots and tables as well. The command used to get the results for the signal region Rpc2L0b is shown below.
 
 ```
 python generateCommands.py --fit --fitmodel bkg --SR Rpc2L0b --Sys ALL --doBlind ALL 
@@ -659,10 +651,10 @@ python generateCommands.py --fit --fitmodel disc --SR Rpc2L0b --Sys ALL
 
 
 
-### Exclusion countour plots:
+### Exclusion contour plots:
 
 
-The commands used to the exclusion contour plots for the model Mc16SusyBtt are summarized below.
+The commands used to get the exclusion contour plots for the model Mc16SusyBtt are summarized below.
 
  
 ```
