@@ -368,10 +368,12 @@ Assume you are in the `python` directory.
 ## 3) Generate exclusion 2D plot: 
 
     
-       python generateCommands.py --plot --doBlind ALL  --Model Mc16SusyGG2StepWZ --SR Rpc2L0b --Sys None
+       python generateCommands.py --plot  --Model Mc16SusyRPVLQD --SR SRLQD --Sys ALL
 
 
-  This command will generate proper command lines to plot *2D exclusion limits* for the exclusion fits with `ALL` regions blinded for the 'GG2StepWZ` model at `Rpc2L0b` signal region `without systematics` included. All results and plots will be stored in `HistFitterUser` directory. The main scripts used are `generateCommands.py` and `plotContours.py`. 
+  This command will generate the *2D exclusion limits* for the `RPVLQD` model for the `SRLQD` signal region with `ALL` systematics included. All results and plots will be stored in `HistFitterUser` directory. The main scripts used are `generateCommands.py` and `plotContours.py`. 
+  
+  The command above was used to generate the plot shown in Figure 1.
 
 
   > [!IMPORTANT]
@@ -392,13 +394,19 @@ cross section is scaled up and down by the theoretical uncertainty.  The light b
 
 
  This command will generate the proper command lines to plot upper limits on the cross-sections as a function of the generated mass points for 
- the `Mc16SusyTT2Step` model at `Rpc3LSS1b` signal region with `ALL` systematics included. All results and plots will be stored in the `HistFitterUser` directory. The main scripts used are `generateCommands.py` and `plotContours.py`. 
+ the `Mc16SusyTT2Step` model at `Rpc3LSS1b` signal region with `ALL` systematics included. All results and plots will be stored in the `HistFitterUser` directory. The main scripts used are `generateCommands.py` and `plotContours.py`.
+
+ The command above was used to generate the plot shown in Figure 2.
 
     
   > [!IMPORTANT]
   > *You must ensure that you have done the exclusion fit and merging step with `--doUL`. When plotting, both options, `--doUL --draw1D` must be provided to get the final plot of the upper limit on the cross-section as a function of the generated mass point.*
 
-
+<p align="center">
+<a href="url"><img src="https://github.com/dparedesh/SUSYStrong/assets/13987503/7459a67c-af9f-4dcd-b33a-016c2363f71d" align="center" height="300"  ></a>
+</p>
+<p align="center"><sub>Figure 2: 95% CL exclusion limits on the production of pairs of top squarks, assuming a 100% branching ratio into the decay mode. The limits are determined from the expected contributions of these processes to the 𝚁𝚙𝚌𝟹𝙻𝚂𝚂𝟷𝚋 SR. The colored bands display the $\pm 1 \sigma$ and $\pm 2 \sigma$ ranges of the expected fluctuations around the mean expected limit, in the absence of contributions from the sought-for signals. They do not account for uncertainties in the signal process cross-sections, the impact of which is illustrated by the dashed lines around the observed limits. The figure shows for reference the reach of the previous analysis.  </sup></p>  
+  
 
 # How to get the exclusion plots for the `best limits`? <a name="bestLimits"></a> 
 
