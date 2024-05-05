@@ -350,18 +350,18 @@ Assume you are in the `python` directory.
 
 ## 1) Perform the fit:
 
-            python generateCommands.py --fit --doBlind ALL --fitmodel excl --Model Mc16SusyGG2StepWZ --SR Rpc2L0b --Sys None
+            python generateCommands.py --fit --fitmodel excl --Model Mc16SusyRPVLQD --SR SRLQD --Sys ALL
 
   
-  This command will perform an `exclusion fit`, blinding `ALL` regions for the `GG2StepWZ` model at `Rpc2L0b` signal region `without systematics` included. One can change the options as they want. All results will be stored in `HistFitter/results/` (the main script used is `generateCommands.py`).
+  This command will perform an `exclusion fit`, for the `Mc16SusyRPVLQD` model for the `SRLQD` signal region with `ALL` systematics included. Options can be changed to fit your needs. All results will be stored in `HistFitter/results/` (the main script used is `generateCommands.py`).
 
 
 
 ## 2) Merge the results:
  
-            python generateCommands.py --merge --doBlind ALL  --Model Mc16SusyGG2StepWZ --SR Rpc2L0b --Sys None
+            python generateCommands.py --merge  --Model Mc16SusyRPVLQD --SR SRLQD --Sys ALL
 
-  This line will create the proper  command to merge all related results for the exclusion fits with `ALL` regions blinded  for the `GG2StepWZ` model at `Rpc2L0b` signal region `without systematics` included. It will merge the results  into one file per theory variation, i.e. nom, up, and down, which are needed for the plotting part. 
+  This line will create the proper  command to merge all related results for the exclusion fits for the `Mc16SusyRPVLQD` model for the `SRLQD` signal region with `ALL` systematics included. It will merge the results  into one file per theory variation, i.e. nom, up, and down, which are needed for the plotting part. 
   Results will be stored in `HistFitter/results/` (the main script used is `generateCommands.py`)
 
 
@@ -371,7 +371,7 @@ Assume you are in the `python` directory.
        python generateCommands.py --plot  --Model Mc16SusyRPVLQD --SR SRLQD --Sys ALL
 
 
-  This command will generate the *2D exclusion limits* for the `RPVLQD` model for the `SRLQD` signal region with `ALL` systematics included. All results and plots will be stored in `HistFitterUser` directory. The main scripts used are `generateCommands.py` and `plotContours.py`. 
+  This command will generate the *2D exclusion limits* for the `Mc16SusyRPVLQD` model for the `SRLQD` signal region with `ALL` systematics included. All results and plots will be stored in `HistFitterUser` directory. The main scripts used are `generateCommands.py` and `plotContours.py`. 
   
   The command above was used to generate the plot shown in Figure 1.
 
@@ -417,8 +417,8 @@ If you want to get the `best limit` for a model with multiple signal regions, th
         python generateCommands.py --plot  --Model Mc16SusySSWZ --SR SRSSWZ-L --Sys ALL  --makeBest SRSSWZ-L,SRSSWZ-ML,SRSSWZ-MH,SRSSWZ-H
 
 
-This command will generate the proper commands to get the best contour plot for the exclusion of the 'Mc16SusySSWZ` model with `ALL` systematics included for the list of signal regions provided: SRSSWZ-L, SRSSWZ-ML, SRSSWZ-MH, SRSSWZ-H. In addition to the best contour plot,
-it will also produce the plot of the best signal region used per each signal point in the grid. 
+This command will generate the proper commands to get the best contour plot for the exclusion of the `Mc16SusySSWZ` model with `ALL` systematics included for the list of signal regions provided: SRSSWZ-L, SRSSWZ-ML, SRSSWZ-MH, SRSSWZ-H. In addition to the best contour plot,
+it will also produce the plot of the best signal region used for each signal point in the grid. 
 
 All results and plots will be stored in `HistFitterUser` directory.
 
@@ -456,7 +456,7 @@ The command above has been used to generate the plots shown in Figure 3.
 
  To get the model-independent upper limits follow the instructions from HF to use the script `UpperLimitTable.py`
 
-An example of the results of the discovery fit done for multiple signal regions is shown in Table 1.  
+The results of the discovery fit done for all the signal regions considered in Ref. [1] are shown in Table 1.  
 
 <p align="center">
 <a href="url"><img src="https://github.com/dparedesh/SUSYStrong/assets/13987503/26379c86-8af1-4848-9d02-062b541d6c09" align="center" height="300"  ></a>  
@@ -478,7 +478,7 @@ Binned fits are done by providing the proper extra options to the configuration 
 --extraFitConfig '--binnedFitSR Rpc2L1b:meff,Rpc2L2b:met --binnedFitCR CRWZ5j:nJets' 
 ```
 
-which means that it will do a binned and simultaneous fit in the SRs Rpc2L1b and Rpc2L2b in the variables meff and met, respectively, and in nJets in the CRWZ5j.  
+which means that it will do a binned and simultaneous fit in the SRs `Rpc2L1b` and `Rpc2L2b` in the variables `meff` and `met`, respectively, and in `nJets` in the CRWZ5j.  
 
 You can have a look at the file `fitConfigSS3L.py` for other options.
 
@@ -579,7 +579,7 @@ you can have a fit, whose result is a bit weird, or it does not match the values
 The macro `CheckJobs.C` can be used to check that everything went well in batch. It is designed to spot several of the reasons (which have
 been identified a long time) for which the fit can't go well. 
 
-When jobs are submitted to lxplus batch, a .txt file named `Jobs_<grid><runNameTag>_<fitmodel>.txt` is generated. This file is the input for the macro CheckJobs.C
+When jobs are submitted to lxplus batch, a .txt file named `Jobs_<grid><runNameTag>_<fitmodel>.txt` is generated. This file is the input for the macro `CheckJobs.C`
 
 How to use the macro? check that the `lumiTag` variable at the beginning of the script matches the one that you used. Then:
 
@@ -605,7 +605,7 @@ The file created previously can be used to resubmit  to batch the failed jobs us
   python generateCommands.py --fit --doBlind ALL --fitmodel excl --Model Mc16SusyGG2StepWZ --SR Rpc2L0b --Sys None --batch --extra syst:condor,queue:tomorrow --resubmit ToSumit.txt
   ```
   
-  which will submit only those jobs that match the name in the file ToSubmit.txt
+  which will submit only those jobs that match the name in the file `ToSubmit.txt`
 
 
 # How to get the yields and systematical tables?  <a name="tables"></a> 
