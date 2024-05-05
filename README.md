@@ -456,6 +456,17 @@ The command above has been used to generate the plots shown in Figure 3.
 
  To get the model-independent upper limits follow the instructions from HF to use the script `UpperLimitTable.py`
 
+An example of the results of the discovery fit done for multiple signal regions is shown in Table 1.  
+
+<p align="center">
+<a href="url"><img src="https://github.com/dparedesh/SUSYStrong/assets/13987503/26379c86-8af1-4848-9d02-062b541d6c09" align="center" height="300"  ></a>  
+</p>
+<p align="center"><sub>Table 1: Upper limits at 95% CL  on the visible cross-section
+($\sigma_\text{vis}$), on the number of
+signal events ($S_{\mathrm{obs}}^{95}$ ), and on the number of signal events given the 
+expected number of background events and its $\pm 1\sigma$ variations, ($S_{\mathrm{exp}}^{95}$). 
+The last two columns indicate the $\text{CL}_\text{b}$  value, i.e. the confidence level observed for
+the background-only hypothesis, the discovery $p$-value $(p(s = 0))$ and its associated significance $Z$ [1].   </sup></p> 
 
 
 # How to do a binned fit? <a name="binnedFit"></a>
