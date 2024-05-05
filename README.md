@@ -662,7 +662,7 @@ At the moment of running `plotSR.py`, the file `AsymmetricUnc.json`  is created.
 The summary plots of Ref. [1] shown in Figure 4 were obtained with these scripts. It includes the summary yields table shown in Table 2.
 
 
-![tab_10](https://github.com/dparedesh/SUSYStrong/assets/13987503/1196f66a-bca4-4007-90b4-5e2f14edb5e1)
+
 
 <p align="center">
 <a href="url"><img src="https://github.com/dparedesh/SUSYStrong/assets/13987503/83318905-f3e7-4603-b5b2-69a5db7d9a14" align="center" height="300"  ></a>  
