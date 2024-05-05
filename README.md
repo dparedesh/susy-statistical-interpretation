@@ -371,12 +371,19 @@ Assume you are in the `python` directory.
        python generateCommands.py --plot --doBlind ALL  --Model Mc16SusyGG2StepWZ --SR Rpc2L0b --Sys None
 
 
-  This command will generate proper command lines to plot *2D exclusion limits* for the exclusion fits with `ALL` regions blinded for the 'GG2StepWZ` model at `Rpc2L0b` signal region `without systematics` included. All results and plots will be stored in `HistFitterUser` dir. The main scripts used are `generateCommands.py` and `plotContours.py`. 
+  This command will generate proper command lines to plot *2D exclusion limits* for the exclusion fits with `ALL` regions blinded for the 'GG2StepWZ` model at `Rpc2L0b` signal region `without systematics` included. All results and plots will be stored in `HistFitterUser` directory. The main scripts used are `generateCommands.py` and `plotContours.py`. 
 
 
   > [!IMPORTANT]
   > *In order to run this option, you must be sure that your model and its plotting parameters are defined in the script ```plottingConfig.py```. If it is
   not, you must add it.*
+
+
+<p align="center">
+<a href="url"><img src="https://github.com/dparedesh/SUSYStrong/assets/13987503/ccaa1c86-d689-4f84-9199-dc21fa4bec61" align="center" height="300"  ></a>
+</p>
+<p align="center"><sub>Figure 1: Observed (red line) and expected  (black dashed line) 95% CL exclusion regions for $\tilde g$ and $\tilde\chi_1^0$ masses obtained for the model $\tilde g \rightarrow q\bar q \tilde\chi_1^0 $, $\tilde\chi_1^0 \rightarrow \ell qq$ [1].   The yellow band shows the $\pm 1 \sigma$ variation of the expected limits.  The red dotted lines around the observed limit illustrate the change in the observed limit as the nominal signal
+cross section is scaled up and down by the theoretical uncertainty.  The light blue shaded area  indicates the observed limits obtained by previous ATLAS searches. </sup></p>  
   
 ## 4) Generate exclusion 1D plot :
 
