@@ -33,7 +33,7 @@ It has been built on top of [HistFitter](https://github.com/histfitter/histfitte
 
 1. Generate the input ROOT files for HistFitter.
 2. Generate the HistFitter commands:
-  - Perform all kinds of fit: *bkg-only fit, exclusion fit, and model-independent fit*).
+  - Perform all kinds of fit: *bkg-only fit, exclusion fit, and discovery fit*).
   - Get *yields*.
   - Get *plots*. 
 3. Generate commands to generate *summary plots* and *tables*.
@@ -80,7 +80,7 @@ source setup.sh
    ```  
     
   > [!TIP]
-  > In this step, if you want to speed up the process, you can comment out the lines `make clean` and `make` in the file `setup.sh`, which will avoid compiling HF every time that you start a new session allowing you to save time. 
+  > *In this step, if you want to speed up the process, you can comment out the lines `make clean` and `make` in the file `setup.sh`, which will avoid compiling HF every time that you start a new session allowing you to save time.* 
     
 
 
@@ -183,7 +183,7 @@ The above command will set up the framework.
    where ```<lumi>``` must be in $pb^{-1}$, and ```<bkg>``` is the name for every background process as defined in the `fitConfigSS3L.py` with the desired splitting. 
    
  > [!NOTE]
- > The recommendation is to have the ntuples stored in EOS, and create symbolic links to them from `InputTrees`. Don't run with ntuples stored in AFS, since it will kill the system.
+ > *The recommendation is to have the ntuples stored in EOS, and create symbolic links to them from `InputTrees`. Don't run with ntuples stored in AFS, since it will kill the system.*
    
 
 4. Open the file `generateCommands.py` and check that the variable `lumiTag=<lumi>` agrees with the value of the ntuples just above. 
@@ -246,10 +246,10 @@ that you want to use.
 
 
 
- > [!CAUTION]
- > For nominal and statistical uncertainties the bin content is **absolute**, while for the systematics the bin content to be provided  is **relative**. 
- > The names of the dictionaries provided here must agree with those called in the `fitConfigSS3L.py` in the lines  with the dictionary ```yieldsCoded```. If for some reason 
- you change those names you must ensure that the input provided when creating the samples matches those names every time that you call ```yieldsCoded```. 
+ > [!IMPORTANT]
+ > *For nominal and statistical uncertainties the bin content is **absolute**, while for the systematics the bin content to be provided  is **relative**.*
+ > *The names of the dictionaries provided here must agree with those called in the `fitConfigSS3L.py` in the lines  with the dictionary ```yieldsCoded```. If for some reason 
+ you change those names you must ensure that the input provided when creating the samples matches those names every time that you call ```yieldsCoded```.* 
   
 
  9. For the theory uncertainties, check the file ```theorySystematics.json``` and ensure that for every region that
@@ -278,9 +278,9 @@ that you want to use.
                     "VRWZ5j"    : 0.243500}
     ```
 
- > [!CAUTION]
- > The names of the dictionaries provided here must **agree** with those imported in the `fitConfigSS3L.py` everytime that you call the dictionary ```theorySyst```. If for some reason 
-  you change those names you must ensure that the input provided when creating the samples matches those names. 
+ > [!IMPORTANT]
+ > *The names of the dictionaries provided here must **agree** with those imported in the `fitConfigSS3L.py` everytime that you call the dictionary ```theorySyst```. If for some reason 
+  you change those names you must ensure that the input provided when creating the samples matches those names.* 
 
 
 10. For exclusion limits, ensure that the SUSY grid that you want to use is stored in `susyGridFiles` directory. If it is not, you must add it. 
@@ -292,42 +292,43 @@ that you want to use.
 Running instructions:
 
     python generateCommands.py --FUNCTION --doBlind <option> --fitmodel FITMODEL --Model MODEL --SR REGION --Sys SYSLIST
-1. ```--FUNCTION```: choose from `fit`, `merge`, `plot`, `yields`, `SysBreak`, `FitResults` according to what you want
-2. ```--doBlind ```: choose from `ALL`, `SR`, `VR`, `CR`. It will blind the options provided. If more than one, they must be comma separated. 
-3. ```--fitmodel```: choose from `excl`, `disc`, `bkg` according to what fit you want to perform
-4. ```--Model```: set your fitting signal model. It must exist in the `choices` argument of the parser. 
-5. ```--SR```: set your interested signal region. If more than one SR they must be comma separated. They can be binned.
-6. ```--CR```: set your interested control region.  If more than one CR they must be comma separated. They can be binned. 
-7. ```--VR```: set your interested validation regions. You can add as many VRs as you want, as long as they are comma separated. They are unbinned. 
-6. ```--Sys```: set the systematics that you want to included. `None` for nothing, `ALL` to include all systematics. For signal region optimisation studies and preliminary results (when systematic ntuples are not available), you can use a flat systematic on the total background. You can use the string  `FLAT<number>`, where ```<number>``` is the value that you want to apply, for example  ```--Sys FLAT30``` will apply 30% of systematic to the total background.  
-7. ```--batch```: use batch to run the fit. Currently only IHEP HTCondor  and HTcondor in lxplus batch systems are supported. 
-    The following options works only on lxplus:
+    
+- ```--FUNCTION```: choose from `fit`, `merge`, `plot`, `yields`, `SysBreak`, `FitResults` according to what you want
+- ```--doBlind ```: choose from `ALL`, `SR`, `VR`, `CR`. It will blind the options provided. If more than one, they must be comma separated.
+- ```--fitmodel```: choose from `excl`, `disc`, `bkg` according to what fit you want to perform
+- ```--Model```: set your fitting signal model. It must exist in the `choices` argument of the parser.
+- ```--SR```: set your interested signal region. If more than one SR they must be comma separated. They can be binned.
+- ```--CR```: set your interested control region.  If more than one CR they must be comma separated. They can be binned.
+- ```--VR```: set your interested validation regions. You can add as many VRs as you want, as long as they are comma-separated. They are unbinned.
+- ```--Sys```: set the systematics that you want to included. `None` for nothing, `ALL` to include all systematics. For signal region optimization studies and preliminary results (when systematic ntuples are not available), you can use a flat systematic on the total background. You can use the string  `FLAT<number>`, where ```<number>``` is the value that you want to apply, for example  ```--Sys FLAT30``` will apply 30% of systematic to the total background
+- ```--batch```: use batch to run the fit. Currently, only *IHEP HTCondor*  and *HTcondor* in *lxplus batch* systems are supported.
   
-     * ```--extra <syst:bsub,queue:8nh,storage:20000>```: provide system, queue and storage required for batch. Options can be found in the script generateCommands.py. 
-     * ```--resubmit  <filename>```: provide filename containing the name of the failed jobs. This file is automatically created when running in batch.      
+    The following options work only on lxplus:
+  
+     * ```--extra <syst:bsub,queue:8nh,storage:20000>```: provide system, queue and storage required for batch. Options can be found in the script `generateCommands.py`. 
+     * ```--resubmit  <filename>```: provide filename containing the name of the failed jobs. This file is automatically created when running in batch.
+       
+- ```--doUL```: it will compute the upper limits on the cross-section for ```--fit --fitmodel excl```. It will merge  the UL results for ```--merge```, and it will draw the UL for ```--plot```. 
 
-7. ```--doUL```: it will compute the upper limits on the cross-section for ```--fit --fitmodel excl```. It will merge 
-the UL results for ```--merge```, and it will draw the UL for ```--plot```. 
+     * ```--draw1D```: Use this option together with --doUL if you want to produce 1D plots, i.e. upper limits on the cross-section as a function of the mass point. 
 
-     * ```--draw1D```: Use this option together with --doUL if you can to produce 1D plots, i.e. upper limits on the cross-section as a function of the mass point. 
-
-8. The options below make sense only for ```--plot``` option in the exclusion plots:
+- The options below make sense only for ```--plot``` option in the exclusion plots:
 
      * ```--drawCLs```: it will draw the CLs values.
     
-     * ```--makeBest```: if the model uses more than one SR, then it will choose the best one for the contour plot. In order to run succesfully this option, 
-    the full results for the model for every involved region must be ready, i.e. they must have been run with ```--plot``` for every region. It will read the results previously produced and generate the 
-    best contour plot. In addition, if the option ```--doUL``` is provided, it will draw the best UL on the cross-section. You must provide a comma separated list of the regions to be combined.
+     * ```--makeBest```: if the model uses more than one SR, then it will choose the best one for the contour plot. To run successfully this option, the full results for the model for every involved region must be ready, i.e. they must have been run with ```--plot``` for every region. It will read the results previously produced and generate the  best contour plot. In addition, if the option ```--doUL``` is provided, it will draw the best UL on the cross-section. You must provide a comma-separated list of the regions to be combined.
 
-9. ```--extraFitConfig```: use this option to pass additional parameters to the script ```fitConfigSS3L.py```. Normally used to do binned fits and to normalize a bacground in a CR. Check available options in that script. Argument must be passed in quotas.
-10. ```--extraHarvestToContours```: Extra options to be passed to ```harvestToContours.py```. Check available options in that HF script. Argument must be passed in quotas.
-9. **Other possible options are all listed in generateCommands.py** 
-8. **All SRs, CRs, and VRs, must be defined in ```fitConfigSS3L.py``` and in the ```binning``` dictionary of the file ```hardCodedYields.json```, even if they are unbinned the default option must be given**
+- ```--extraFitConfig```: use this option to pass additional parameters to the script ```fitConfigSS3L.py```. Normally used to do binned fits and to normalize a background in a CR. Check available options in that script. Arguments must be passed in quotas.
+- ```--extraHarvestToContours```: Extra options to be passed to ```harvestToContours.py```. Check available options in that HF script. Arguments must be passed in quotas.
+- **Other possible options are all listed in `generateCommands.py`** 
+- **All SRs, CRs, and VRs must be defined in ```fitConfigSS3L.py``` and in the ```binning``` dictionary of the file ```hardCodedYields.json```, even if they are unbinned the default option must be given.**
 
 
-The table  below represents the behavior of the tool depending on the input region (as provided to the tool, not as defined in the analysis) for the kind of fit requested. For example, if the fit is bkg-only but you input a SR or a VR, 
+Table 1 represents the behavior of the tool depending on the input region (as provided to the tool, not as defined in the analysis) for the kind of fit requested. For example, if the fit is bkg-only but you input a SR or a VR, 
 then internally it will be converted to a CR. 
 
+<div align="center">
+   
 | Input regions |  Bkg-only  | Exclusion | Discovery |
 |----|:---:|:---:|:---:|
 | SR | CR | SR | SR |
@@ -337,6 +338,10 @@ then internally it will be converted to a CR.
 | CR, VR | CR, VR | - | - |
 | SR, VR | CR, VR | - | - |
 | CR, SR, VR | CR, VR, VR | - | - |
+
+</div>
+
+<p align="center"><sub>Table 1: Behavior of the tool depending on the input region and the kind of fit requested. </sup></p>  
 
 
 # How to get exclusion limits? <a name="exclusion"></a>
