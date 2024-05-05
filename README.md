@@ -668,3 +668,10 @@ python generateCommands.py --plot --Model Mc16SusyBtt --SR Rpc2L2b --Sys ALL
 
 python generateCommands.py --plot --Model Mc16SusyBtt --SR Rpc2L2b --Sys ALL --makeBest Rpc2L1b,Rpc2L2b
 ```
+
+# Official results obtained with this tool:
+
+1. ATLAS Collaboration, *Search for pair production of squarks or gluinos decaying via sleptons or weak bosons in final states with two same-sign or three leptons with the ATLAS detector*, [JHEP 02 (2024) 107](https://inspirehep.net/literature/2673888).
+2. ATLAS Collaboration, *Search for direct production of winos and higgsinos in events with two same-charge leptons or three leptons in* $pp$ *collision data at* $\sqrt s =13$ *TeV with the ATLAS detector*, [JHEP 11 (2023) 150 ](https://link.springer.com/article/10.1007/JHEP11(2023)150).
+3. ATLAS Collaboration, *Search for squarks and gluinos in final states with same-sign leptons and jets using 139* $fb^{−1}$ *of data collected with the ATLAS detector*, [JHEP 06 (2020) 046](https://link.springer.com/article/10.1007/JHEP06(2020)046).
+
