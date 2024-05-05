@@ -659,6 +659,22 @@ For fitted yields, only symmetric uncertainties are available. Options for blind
  
 At the moment of running `plotSR.py`, the file `AsymmetricUnc.json`  is created. This file will be read by the script `PlotSystematicsGrouped.py` to get the statistical uncertainty. Be sure that the file  `AsymmetricUnc.json` contains all the regions that you want to include in the grouped systematics plot. 
 
+The summary plots of Ref. [1] shown in Figure 4 were obtained with these scripts. It includes the summary yields table shown in Table 2.
+
+
+![tab_10](https://github.com/dparedesh/SUSYStrong/assets/13987503/1196f66a-bca4-4007-90b4-5e2f14edb5e1)
+
+<p align="center">
+<a href="url"><img src="https://github.com/dparedesh/SUSYStrong/assets/13987503/83318905-f3e7-4603-b5b2-69a5db7d9a14" align="center" height="300"  ></a>  
+<a href="url"><img src="https://github.com/dparedesh/SUSYStrong/assets/13987503/1e8d8544-6577-4395-98de-fc9e717f5e06" align="center" height="300"  ></a>     
+</p>
+<p align="center"><sub>Figure 4:  The figure at the top shows the  data and post-fit background comparison in all signal regions of Ref. [1]. The total uncertainties in the expected event yields are shown as the hatched bands. The bottom panel shows the significance. The bottom plot shows the relative contribution from different categories of uncertainties in the signal regions. </sup></p> 
+
+<p align="center">
+<a href="url"><img src="https://github.com/dparedesh/SUSYStrong/assets/13987503/1196f66a-bca4-4007-90b4-5e2f14edb5e1" align="center" height="300"  ></a>  
+<p align="center"><sub>Table 2: The number of observed data events and expected background contributions in signal regions defined for the RPC models considered in Ref. [1]. </sup></p> 
+
+
 
 
 # To get inspired... commands used to get the results in the paper: <a name="paper"></a>
