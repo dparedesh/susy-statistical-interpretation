@@ -405,7 +405,7 @@ cross section is scaled up and down by the theoretical uncertainty.  The light b
 <p align="center">
 <a href="url"><img src="https://github.com/dparedesh/SUSYStrong/assets/13987503/7459a67c-af9f-4dcd-b33a-016c2363f71d" align="center" height="300"  ></a>
 </p>
-<p align="center"><sub>Figure 2: 95% CL exclusion limits on the production of pairs of top squarks, assuming a 100% branching ratio into the decay mode. The limits are determined from the expected contributions of these processes to the 𝚁𝚙𝚌𝟹𝙻𝚂𝚂𝟷𝚋 SR. The colored bands display the $\pm 1 \sigma$ and $\pm 2 \sigma$ ranges of the expected fluctuations around the mean expected limit, in the absence of contributions from the sought-for signals. They do not account for uncertainties in the signal process cross-sections, the impact of which is illustrated by the dashed lines around the observed limits. The figure shows for reference the reach of the previous analysis.  </sup></p>  
+<p align="center"><sub>Figure 2: 95% CL exclusion limits on the production of pairs of top squarks, assuming a 100% branching ratio into the decay mode. The limits are determined from the expected contributions of these processes to the 𝚁𝚙𝚌𝟹𝙻𝚂𝚂𝟷𝚋 SR. The colored bands display the $\pm 1 \sigma$ and $\pm 2 \sigma$ ranges of the expected fluctuations around the mean expected limit, in the absence of contributions from the sought-for signals. They do not account for uncertainties in the signal process cross-sections, the impact of which is illustrated by the dashed lines around the observed limits. The figure shows for reference the reach of the previous analysis [3].  </sup></p>  
   
 
 # How to get the exclusion plots for the `best limits`? <a name="bestLimits"></a> 
@@ -414,19 +414,26 @@ Assume you are in the `python` directory.
 
 If you want to get the `best limit` for a model with multiple signal regions, the keyword in the command line is `--makeBest <SR1>,<SR2>,<SR>,..`:
 
-        python generateCommands.py --plot  --doBlind ALL --Model Mc16SusyBtt --SR Rpc2L1b --Sys None  --makeBest Rpc2L1b,Rpc2L2b
+        python generateCommands.py --plot  --Model Mc16SusySSWZ --SR SRSSWZ-L --Sys ALL  --makeBest SRSSWZ-L,SRSSWZ-ML,SRSSWZ-MH,SRSSWZ-H
 
 
-This command will generate the proper commands to get the best contour plot for the exclusion fit with `ALL` 
-regions blinded  for the 'Mc16SusyBtt` model without systematics* included for the list of signal regions provided: Rpc2L1b and Rpc2L2b. In addition to the best contour plot,
+This command will generate the proper commands to get the best contour plot for the exclusion of the 'Mc16SusySSWZ` model with `ALL` systematics included for the list of signal regions provided: SRSSWZ-L, SRSSWZ-ML, SRSSWZ-MH, SRSSWZ-H. In addition to the best contour plot,
 it will also produce the plot of the best signal region used per each signal point in the grid. 
 
-All results and plots will be stored in `HistFitterUser` dir.
+All results and plots will be stored in `HistFitterUser` directory.
+
+The command above has been used to generate the plots shown in Figure 3.
 
 > [!IMPORTANT]
 >  *In order to run this command you must have already produced all the contour plots for every signal region involved.*
  
 
+<p align="center">
+<a href="url"><img src="https://github.com/dparedesh/SUSYStrong/assets/13987503/c7955bde-df81-4de7-a6e7-ffb824d38629" align="center" height="300"  ></a>
+<a href="url"><img src="https://github.com/dparedesh/SUSYStrong/assets/13987503/66ca1a67-50f3-4c3b-a29a-6a4f14f62848" align="center" height="300"  ></a>   
+</p>
+<p align="center"><sub>Figure 3: The left figure shows the observed (red line) and expected (black dashed line) 95% CL exclusion regions for $\tilde g$ and $\tilde\chi_1^0$  masses obtained for the model $\tilde q \rightarrow q^\prime WZ \tilde\chi_1^0 $. The yellow band shows the $\pm 1 \sigma$ variation of the expected limits. The red dotted lines around the observed limit illustrate the change in the observed limit as the nominal signal cross section is scaled up and down by the theoretical uncertainty. The light blue shaded area indicates the observed limits obtained by previous ATLAS searches. The right figure shows  the identification of the signal region chosen to set the limits for the model [1].   </sup></p>  
+  
 
 # How to get a background-only fit?  <a name="bkg"></a>
 
